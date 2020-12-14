@@ -1,15 +1,19 @@
-import { ITemplateReader } from "./interfaces";
-import { makeRegexWithTemplate, parser } from "./utils";
+import { ITemplateReader, Vars } from "./interfaces";
+import { templateReader } from "./utils";
 
-export function templateReader(args: ITemplateReader) {
-  const { str, vars = {}, wrapper = "{{}}" } = args;
-  if (!str) {
-    throw new Error("No string provided");
+export function itsTheTemplator(args: ITemplateReader): string;
+export function itsTheTemplator(
+  str: string,
+  vars?: Vars,
+  wrapper?: string
+): string;
+export function itsTheTemplator(
+  arg: string | ITemplateReader,
+  vars?: Vars,
+  wrapper?: string
+): string {
+  if (typeof arg === "string") {
+    return templateReader({ str: arg, vars, wrapper });
   }
-
-  const tokens = str.split(new RegExp(makeRegexWithTemplate(wrapper)));
-  const res = tokens.map(parser(vars));
-  return res.join("");
+  return templateReader(arg);
 }
-
-export default templateReader;

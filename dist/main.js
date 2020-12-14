@@ -1,15 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.templateReader = void 0;
+exports.itsTheTemplator = void 0;
 const utils_1 = require("./utils");
-function templateReader(args) {
-    const { str, vars = {}, wrapper = "{{}}" } = args;
-    if (!str) {
-        throw new Error("No string provided");
+function itsTheTemplator(arg, vars, wrapper) {
+    if (typeof arg === "string") {
+        return utils_1.templateReader({ str: arg, vars, wrapper });
     }
-    const tokens = str.split(new RegExp(utils_1.makeRegexWithTemplate(wrapper)));
-    const res = tokens.map(utils_1.parser(vars));
-    return res.join("");
+    return utils_1.templateReader(arg);
 }
-exports.templateReader = templateReader;
-exports.default = templateReader;
+exports.itsTheTemplator = itsTheTemplator;

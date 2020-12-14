@@ -9,7 +9,7 @@ export interface ITemplateReader {
   /**
    * Object structure that it will declare the variables to be substituted int the templates
    */
-  vars?: Record<string, string>;
+  vars?: Vars;
   /**
    * @default {{}}
    * @example
@@ -18,3 +18,5 @@ export interface ITemplateReader {
    */
   wrapper?: string;
 }
+
+export type Vars = Record<string, string>;

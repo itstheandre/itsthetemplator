@@ -1,29 +1,22 @@
-const { templateReader } = require("../dist");
+const { default: templator, itsTheTemplator } = require("../dist");
 
-describe("templateReader", () => {
-  describe("failure states", () => {
-    test("Throws if no string", () => {
-      // @ts-expect-error
-      expect(() => templateReader({})).toThrowError();
-    });
-
-    test("throws if template is not in pairs", () => {
-      expect(() =>
-        templateReader({ str: "Test string", wrapper: "(" })
-      ).toThrowError();
-    });
+describe("The main function", () => {
+  it("both default and named functions work", () => {
+    expect(templator).toStrictEqual(itsTheTemplator);
   });
 
-  test("Works if no args are passed", () => {
-    const str = "Hello there, OSS";
-    expect(templateReader({ str })).toBe(str);
+  it("works if object is passed", () => {
+    expect(() =>
+      templator({ str: "Hello there, {{name}}", vars: { name: "André" } })
+    ).not.toThrow();
+    expect(
+      templator({ str: "Hello there, {{name}}", vars: { name: "André" } })
+    ).toEqual("Hello there, André");
   });
 
-  test("Works if you pass data within default template parser", () => {
-    const str = "Hello there, {{name}}";
-    const obj = { name: "OSS Maintainer" };
-    expect(templateReader({ str, vars: obj })).toBe(
-      "Hello there, OSS Maintainer"
-    );
+  it("works if passed by ordered arguments", () => {
+    expect(() =>
+      itsTheTemplator("Hello there, {{name}}", { name: "André" })
+    ).not.toThrow();
   });
 });

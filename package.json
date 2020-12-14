@@ -1,0 +1,27 @@
+{
+  "name": "templator-reloaded",
+  "version": "1.0.0",
+  "description": "A maxstache inspired tool perform template replacement, but with the possibility for users to add their own custom patterns",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "rimraf ./dist && tsc",
+    "test": "jest",
+    "test:dev": "jest --watchAll --collect-coverage",
+    "test:cov":"jest --collect-coverage",
+    "pretest:cov":"pnpm run build"
+  },
+  "keywords": [],
+  "author": "André de Albuquerque",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.13",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

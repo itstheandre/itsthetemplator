@@ -1,4 +1,4 @@
-import { itsTheTemplator } from "../src";
+import itsTheTemplator from "../src";
 
 describe("The main function", () => {
   it("works if object is passed", () => {

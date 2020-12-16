@@ -13,3 +13,4 @@ function makeRegexWithTemplate(str) {
     return baseRegex.join("");
 }
 exports.makeRegexWithTemplate = makeRegexWithTemplate;
+//# sourceMappingURL=regexer.js.map

@@ -9,3 +9,4 @@ function itsTheTemplator(arg, vars, wrapper) {
     return utils_1.templateReader(arg);
 }
 exports.itsTheTemplator = itsTheTemplator;
+//# sourceMappingURL=main.js.map

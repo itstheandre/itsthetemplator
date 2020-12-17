@@ -1,7 +1,7 @@
 const { parser } = require("../../dist/utils");
 
 describe("Parse function", () => {
-  test("it is a function and it returns a function", () => {
+  it("it is a function and it returns a function", () => {
     expect(parser({ test: "andre" })).toBeDefined();
 
     expect(typeof parser).toBe("function");

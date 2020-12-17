@@ -1,6 +1,6 @@
 name: 💻 Dev CI
 on:
-  pull_request:
+  push:
     branches: [dev]
 
 jobs: 
@@ -29,4 +29,4 @@ jobs:
           run_install: |
             - recursive: true
               args: [--frozen-lockfile]
-      - run: pnpm run test -- --coverage
+      - run: pnpm run test:cov

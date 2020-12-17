@@ -65,24 +65,3 @@ describe("The main export", () => {
     });
   });
 });
-
-// describe("The main function", () => {
-//   it.only("works if object is passed", () => {
-//     expect(() =>
-//       itsTheTemplator({
-//         str: "Hello there, {{name}}",
-//         vars: { name: "André" },
-//         wrapper: "{{}}",
-//       })
-//     ).not.toThrow();
-//     expect(
-//       itsTheTemplator({ str: "Hello there, {{name}}", vars: { name: "André" } })
-//     ).toEqual("Hello there, André");
-//   });
-
-//   it("works if passed by ordered arguments", () => {
-//     expect(() =>
-//       itsTheTemplator("Hello there, {{name}}", { name: "André" })
-//     ).not.toThrow();
-//   });
-// });

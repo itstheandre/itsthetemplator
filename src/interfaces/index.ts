@@ -13,7 +13,6 @@ export interface ITemplateReader {
   /**
    * @default {{}}
    * @example
-   * wrapper = "[[[]]]"
    * wrapper = "{{{}}}"
    */
   wrapper?: string;

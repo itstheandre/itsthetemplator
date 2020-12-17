@@ -13,4 +13,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./regexer"), exports);
 __exportStar(require("./parser"), exports);
 __exportStar(require("./templateReader"), exports);
+__exportStar(require("./error.message"), exports);
 //# sourceMappingURL=index.js.map

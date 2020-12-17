@@ -1,18 +1,20 @@
 const itsTheTemplator = require("../dist");
 
-describe("The main function", () => {
-  it("works if object is passed", () => {
-    expect(() =>
-      itsTheTemplator({ str: "Hello there, {{name}}", vars: { name: "André" } })
-    ).not.toThrow();
-    expect(
-      itsTheTemplator({ str: "Hello there, {{name}}", vars: { name: "André" } })
-    ).toEqual("Hello there, André");
-  });
-
-  it("works if passed by ordered arguments", () => {
-    expect(() =>
-      itsTheTemplator("Hello there, {{name}}", { name: "André" })
-    ).not.toThrow();
+describe("The main export", () => {
+  describe("Failure states", () => {
+    it("works if object is passed", () => {
+      expect(true).toBeTruthy();
+      expect(() =>
+        itsTheTemplator({ str: "help", vars: { name: "Andr´∑e" } })
+      ).not.toThrow();
+    });
+    it("works with string constructor", () => {
+      expect(() =>
+        itsTheTemplator("help", { name: "André" })
+      ).not.toThrowError();
+      expect(() =>
+        itsTheTemplator("Hello there, {{name}}", { name: "André" })
+      ).not.toThrow();
+    });
   });
 });

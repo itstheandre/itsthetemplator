@@ -1,31 +1,63 @@
-import { templateReader } from "../../src/utils";
+import { templateReader, error4Char, mainError } from "../../src/utils";
 
 describe("template reader", () => {
+  const str = "Hello there";
+  const obj = { name: "OSS Maintainer" };
+
   describe("templateReader", () => {
     describe("failure states", () => {
-      test("Throws if no string", () => {
+      it("Throws if no string", () => {
         // @ts-expect-error
-        expect(() => templateReader({})).toThrowError();
+        expect(() => templateReader({})).toThrowError(mainError);
       });
 
-      test("throws if template is not in pairs", () => {
+      it("throws if template is not in pairs", () => {
         expect(() =>
-          templateReader({ str: "Test string", wrapper: "(" })
-        ).toThrowError();
+          templateReader({ str: "it string", wrapper: "(" })
+        ).toThrowError(error4Char);
       });
     });
 
-    test("Works if no args are passed", () => {
-      const str = "Hello there, OSS";
-      expect(templateReader({ str })).toBe(str);
-    });
+    describe("Success States", () => {
+      it("Works if no args are passed", () => {
+        const str = "Hello there, OSS";
+        expect(templateReader({ str })).toBe(str);
+      });
 
-    test("Works if you pass data within default template parser", () => {
-      const str = "Hello there, {{name}}";
-      const obj = { name: "OSS Maintainer" };
-      expect(templateReader({ str, vars: obj })).toBe(
-        "Hello there, OSS Maintainer"
-      );
+      it("Works if you pass data within default template parser", () => {
+        expect(templateReader({ str: `${str}, {{name}}`, vars: obj })).toBe(
+          "Hello there, OSS Maintainer"
+        );
+      });
+
+      it("Works with multiple variables", () => {
+        expect(
+          templateReader({
+            str: `${str}, {{name}}, and my username is @{{username}}`,
+            vars: { ...obj, username: "itstheandre" },
+          })
+        ).toBe("Hello there, OSS Maintainer, and my username is @itstheandre");
+      });
+      describe("Works with different parsers", () => {
+        it("triple curlies", () => {
+          expect(
+            templateReader({
+              str: `${str}, {{{name}}}`,
+              vars: obj,
+              wrapper: "{{{}}}",
+            })
+          ).toBe("Hello there, OSS Maintainer");
+        });
+        it("one sided curlies", () => {
+          expect(
+            templateReader({
+              str: `${str}, {{{name{{{`,
+              vars: obj,
+              wrapper: "{{{{{{",
+            })
+          ).toBe("Hello there, OSS Maintainer");
+        });
+      });
     });
   });
 });

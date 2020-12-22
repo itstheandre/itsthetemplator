@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: code-coverage
-          path: coverage.zip
+          path: coverage
       - name: ZIP Build Assets ${{matrix.node}}
         if: github.event_name == 'push'
         run: zip -r build.zip ./dist
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: build
-          path: build.zip
+          path: build

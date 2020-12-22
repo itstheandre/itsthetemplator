@@ -1,5 +1,4 @@
 name: Release 🚀
-
 on:
   pull_request:
     branches: master
@@ -56,9 +55,6 @@ jobs:
     needs: build_and_test
     name: Release Package 🏎️
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: 👀 Cache node_modules
@@ -87,7 +83,8 @@ jobs:
         run: pnpx codecov
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      - name: 🙏 LETS SEE
-        run: |
-          ls
-          ls -a
+      - name: 📦 Release to NPM
+        run: pnpx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

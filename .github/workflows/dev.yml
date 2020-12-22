@@ -2,6 +2,8 @@ name: 💻 Dev CI
 on:
   pull_request:
     branches: [dev]
+  push:
+    branches: [dev]
 
 
 jobs: 
@@ -31,10 +33,8 @@ jobs:
             - recursive: true
               args: [--frozen-lockfile]
       - run: pnpm run test:cov
-  another:
-    runs-on: ubuntu-latest
-    needs: ["build"]
-    name: "Test"
-    steps:
-      - name: "Running LS"
-        run: ls
+      - name: ZIP Assets
+        if: github.event_name == 'push'
+        run: |
+          zip -r dist.zip ./dist
+          zip -r coverage.zip ./coverage

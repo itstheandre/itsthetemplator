@@ -81,7 +81,13 @@ jobs:
               args: [--frozen-lockfile]
       - name: 🛠️ Build
         run: pnpm run build
-      - name: 🧪 LETS SEE
+      - name: 🧪 TEST
+        run: pnpm run test:ci
+      - name: 🆙Load Coverage Reports
+        run: pnpx codecov
+        env: 
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: 🙏 LETS SEE
         run: |
           ls
           ls -a

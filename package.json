@@ -11,7 +11,8 @@
     "test:dev": "jest --watchAll --collect-coverage",
     "test:cov": "jest --collect-coverage",
     "pretest:cov": "pnpm run build",
-    "pretest": "pnpm run build"
+    "pretest": "pnpm run build",
+    "test:ci":"jest --collect-coverage"
   },
   "keywords": [],
   "author": "André de Albuquerque",

@@ -3,6 +3,7 @@
   "version": "0.5.0",
   "description": "A maxstache inspired tool perform template replacement, but with the possibility for users to add their own custom patterns",
   "main": "dist/index.js",
+  "files": ["dist/*"],
   "scripts": {
     "dev": "ts-node src/index.ts",
     "build": "rimraf ./dist && tsc",

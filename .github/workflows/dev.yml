@@ -33,8 +33,20 @@ jobs:
             - recursive: true
               args: [--frozen-lockfile]
       - run: pnpm run test:cov
-      - name: ZIP Assets
+      - name: Upload Test Coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage
+          path: coverage.zip
+      - name: ZIP Coverage
         if: github.event_name == 'push'
-        run: |
-          zip -r dist.zip ./dist
-          zip -r coverage.zip ./coverage
+        run: zip -r coverage.zip ./coverage
+      - name: Upload build
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
+      - name: ZIP Build Assets
+        if: github.event_name == 'push'
+        run: zip -r build.zip ./dist

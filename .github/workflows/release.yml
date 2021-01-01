@@ -86,5 +86,5 @@ jobs:
       - name: 📦 Release to NPM
         run: pnpx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

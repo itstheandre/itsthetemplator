@@ -1,0 +1,13 @@
+name: Notify On Release
+
+on:
+  push
+
+jobs:
+  discord-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📧 Message to Discord
+        run: |
+          curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "Hey there" ${{ secrets.DISCORD_WEBHOOK }}
+

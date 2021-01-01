@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: 📧 Message to Discord
         run: |
-          curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "New release: ${{ github.event.release.tag_name }} is out, [check it out now](${{ github.event.release.html_url }}) " ${{ secrets.SLACK_WEBHOOK }}
+          curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "New release: ${{ github.event.release.tag_name }} is out, [check it out now](${{ github.event.release.html_url }}) " ${{ secrets.DISCORD_WEBHOOK }}
 

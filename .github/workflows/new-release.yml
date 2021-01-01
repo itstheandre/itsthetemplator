@@ -1,4 +1,4 @@
-name: ✉️  Notify On Release
+name: 🎉  Notify On Release
 
 on:
   release:

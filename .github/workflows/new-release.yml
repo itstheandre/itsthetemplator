@@ -13,3 +13,4 @@ jobs:
         with:
           webhook-url: ${{secrets.DISCORD_WEBHOOK}}
           content: "New release: ${{ github.event.release.tag_name }} is out, [check it out now](${{ github.event.release.html_url }})"
+

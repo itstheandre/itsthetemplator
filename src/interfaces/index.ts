@@ -16,6 +16,14 @@ export interface ITemplateReader {
    * wrapper = "{{{}}}"
    */
   wrapper?: string;
+  /**
+   * @default false
+   * if you wish to escape the `\\`
+   * @example
+   * escape: true
+   * itsTheTemplator({str:"{\\{name}\\}"}, vars:{name:"André", escape: true}) = `{{name}}`
+   */
+  escape?: boolean;
 }
 
 export type Vars = Record<string, string>;

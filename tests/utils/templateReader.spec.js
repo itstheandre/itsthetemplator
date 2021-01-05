@@ -2,9 +2,9 @@ const {
   templateReader,
   error4Char,
   errorNoString,
+  errorIsNotString,
   mainError,
 } = require("../../dist/utils");
-
 describe("template reader", () => {
   const str = "Hello there";
   const obj = { name: "OSS Maintainer" };
@@ -20,6 +20,18 @@ describe("template reader", () => {
         expect(() =>
           templateReader({ str: "it string", wrapper: "(" })
         ).toThrowError(error4Char);
+      });
+      it("throws if str is not a string", () => {
+        // @ts-expect-error
+        expect(() => templateReader({ str: 1 })).toThrow(
+          errorIsNotString(`main string`)
+        );
+      });
+      it("throws if wrapper is not a string", () => {
+        // @ts-expect-error
+        expect(() => templateReader({ str: "123", wrapper: [] })).toThrow(
+          errorIsNotString(`wrapper you passed`)
+        );
       });
     });
 

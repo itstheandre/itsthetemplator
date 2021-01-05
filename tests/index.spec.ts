@@ -64,4 +64,16 @@ describe("The main export", () => {
       ).not.toThrow();
     });
   });
+  describe("With Escape", () => {
+    const str = "{\\{name}\\}";
+    const vars = { name: "André" };
+    it("keeps the object with positional args", () => {
+      // @ts-ignore
+      expect(itsTheTemplator(str, vars, null, true)).toBe("{{name}}");
+    });
+
+    it("works in object", () => {
+      expect(itsTheTemplator({ str, vars, escape: true })).toBe("{{name}}");
+    });
+  });
 });

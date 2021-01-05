@@ -16,6 +16,7 @@ export function makeRegexWithTemplate(wrapper: string): string {
     throw new Error(errorPair);
   }
 
+  // !todo Am I going to need this?
   // if (!str.split("").every((el) => el === "{" || el === "}")) {
   //   throw new Error();
   // }

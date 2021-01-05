@@ -1,4 +1,9 @@
-import { templateReader, error4Char, mainError } from "../../src/utils";
+import {
+  templateReader,
+  error4Char,
+  mainError,
+  errorIsNotString,
+} from "../../src/utils";
 
 describe("template reader", () => {
   const str = "Hello there";
@@ -15,6 +20,18 @@ describe("template reader", () => {
         expect(() =>
           templateReader({ str: "it string", wrapper: "(" })
         ).toThrowError(error4Char);
+      });
+      it("throws if str is not a string", () => {
+        // @ts-expect-error
+        expect(() => templateReader({ str: 1 })).toThrow(
+          errorIsNotString(`main string`)
+        );
+      });
+      it("throws if wrapper is not a string", () => {
+        // @ts-expect-error
+        expect(() => templateReader({ str: "123", wrapper: [] })).toThrow(
+          errorIsNotString(`wrapper you passed`)
+        );
       });
     });
 

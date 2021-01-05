@@ -5,25 +5,25 @@ import {
   errorPair,
 } from "./error.message";
 
-export function makeRegexWithTemplate(str: string): string {
-  if (!str) {
+export function makeRegexWithTemplate(wrapper: string): string {
+  if (!wrapper) {
     throw new Error(errorNoString);
   }
-  if (str.length < 4) {
+  if (wrapper.length < 4) {
     throw new Error(error4Char);
   }
-  if (str.length % 2 !== 0) {
+  if (wrapper.length % 2 !== 0) {
     throw new Error(errorPair);
   }
 
   // if (!str.split("").every((el) => el === "{" || el === "}")) {
   //   throw new Error();
   // }
-  if (![...str].every((el) => /{|}/.test(el))) {
+  if (![...wrapper].every((el) => /{|}/.test(el))) {
     throw new Error(errorCurly);
   }
 
-  const baseRegex = str.split("").map((e) => `\\${e}`);
+  const baseRegex = wrapper.split("").map((e) => `\\${e}`);
   baseRegex.splice(baseRegex.length / 2, 0, "|");
 
   return baseRegex.join("");
